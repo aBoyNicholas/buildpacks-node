@@ -1,0 +1,13 @@
+api = "0.5"
+
+[buildpack]
+id = "chainpayx/nodejs-typescript"
+version = "${TYPESCRIPT_VERSION}"
+name = "TypeScript Buildpack"
+keywords = ["nodejs", "node", "typescript"]
+
+[[buildpack.licenses]]
+type = "MIT"
+
+[[stacks]]
+id = "com.chainpayx.stack"

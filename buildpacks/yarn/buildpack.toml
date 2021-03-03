@@ -1,8 +1,8 @@
-api = "0.2"
+api = "0.5"
 
 [buildpack]
-id = "heroku/nodejs-yarn"
-version = "0.1.3"
+id = "chainpayx/nodejs-yarn"
+version = "${YARN_VERSION}"
 name = "Yarn Buildpack"
 keywords = ["nodejs", "node", "yarn"]
 
@@ -10,17 +10,4 @@ keywords = ["nodejs", "node", "yarn"]
 type = "MIT"
 
 [[stacks]]
-id = "heroku-18"
-
-[[stacks]]
-id = "heroku-20"
-
-[[stacks]]
-id = "io.buildpacks.stacks.bionic"
-
-[metadata]
-
-[metadata.release]
-
-[metadata.release.docker]
-repository = "public.ecr.aws/heroku-buildpacks/heroku-nodejs-yarn-buildpack"
+id = "com.chainpayx.stack"

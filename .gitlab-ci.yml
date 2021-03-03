@@ -1,0 +1,58 @@
+image: docker:19.03.12
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  NODEJS_VERSION: "0.0.1"
+  NPM_VERSION: "0.0.1"
+  TYPESCRIPT_VERSION: "0.0.1"
+  YARML_VERSION: "0.0.1"
+  CI_REGISTRY: "registry.cp.k8s.chainpayx.com"
+  REGISTRY: "${CI_REGISTRY}/chainpayx"
+  DOCKER_HOST: "tcp://localhost:2375"
+
+services:
+  - docker:19.03.12-dind
+
+stages:
+  - build
+  - builder_build
+
+before_script:
+  - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  - apk add curl sudo tar
+  - (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.17.0/pack-v0.17.0-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
+ 
+.build and publish buildpack:
+  stage: build
+  script:
+    - upperName=$(echo ${NAME} | tr "[a-z]" "[A-Z]")
+    - echo "开始构建${upperName} Buildpack镜像"
+    - versionName=\${${upperName}_VERSION}  
+    - version=$(eval echo "${versionName}") 
+    - sed -i "s/\\${versionName}/$(echo $version | sed 's/\./\\\./g')/g" ./buildpacks/${NAME}/target/buildpack.toml
+    - pack buildpack package ${REGISTRY}/${NAME}:latest --config ./buildpacks/${NAME}/target/package.toml
+    - docker tag ${REGISTRY}/${NAME}:latest ${REGISTRY}/${NAME}:${version}
+    - echo "发布${upperName} Buildpack镜像"
+    - docker push ${REGISTRY}/${NAME}:latest
+    - docker push ${REGISTRY}/${NAME}:${version}
+build and publish nodejs:
+  extends: .build and publish buildpack
+  variables:
+    NAME: "nodejs"
+build and publish npm:
+  extends: .build and publish buildpack
+  variables:
+    NAME: "npm"
+build and publish typescript:
+  extends: .build and publish buildpack
+  variables:
+    NAME: "typescript"
+build and publish yarn:
+  extends: .build and publish buildpack
+  variables:
+    NAME: "yarn"
+build and publish buildpacks:
+  stage: builder_build
+  trigger:
+    include:
+    - project: 'chainpayx/build-tools/chainpayx-buildpacks-builder'
+      file: .gitlab-ci.yml

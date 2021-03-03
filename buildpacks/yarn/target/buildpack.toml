@@ -1,0 +1,13 @@
+api = "0.5"
+
+[buildpack]
+id = "chainpayx/nodejs-yarn"
+version = "${YARN_VERSION}"
+name = "Yarn Buildpack"
+keywords = ["nodejs", "node", "yarn"]
+
+[[buildpack.licenses]]
+type = "MIT"
+
+[[stacks]]
+id = "com.chainpayx.stack"

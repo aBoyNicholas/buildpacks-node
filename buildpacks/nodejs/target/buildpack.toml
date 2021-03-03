@@ -1,0 +1,13 @@
+api = "0.5"
+
+[buildpack]
+id = "chainpayx/nodejs-engine"
+version = "${NODEJS_VERSION}"
+name = "Node Buildpack"
+keywords = ["nodejs", "node", "javascript"]
+
+[[buildpack.licenses]]
+type = "MIT"
+
+[[stacks]]
+id = "com.chainpayx.stack"

@@ -1,8 +1,8 @@
-api = "0.2"
+api = "0.5"
 
 [buildpack]
-id = "heroku/nodejs-npm"
-version = "0.4.3"
+id = "chainpayx/nodejs-npm"
+version = "${NPM_VERSION}"
 name = "NPM Buildpack"
 keywords = ["nodejs", "node", "npm"]
 
@@ -10,17 +10,4 @@ keywords = ["nodejs", "node", "npm"]
 type = "MIT"
 
 [[stacks]]
-id = "heroku-18"
-
-[[stacks]]
-id = "heroku-20"
-
-[[stacks]]
-id = "io.buildpacks.stacks.bionic"
-
-[metadata]
-
-[metadata.release]
-
-[metadata.release.docker]
-repository = "public.ecr.aws/heroku-buildpacks/heroku-nodejs-npm-buildpack"
+id = "com.chainpayx.stack"

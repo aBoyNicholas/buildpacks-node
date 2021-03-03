@@ -1,8 +1,8 @@
-api = "0.2"
+api = "0.5"
 
 [buildpack]
-id = "heroku/nodejs-typescript"
-version = "0.2.2"
+id = "chainpayx/nodejs-typescript"
+version = "${TYPESCRIPT_VERSION}"
 name = "TypeScript Buildpack"
 keywords = ["nodejs", "node", "typescript"]
 
@@ -10,17 +10,4 @@ keywords = ["nodejs", "node", "typescript"]
 type = "MIT"
 
 [[stacks]]
-id = "heroku-18"
-
-[[stacks]]
-id = "heroku-20"
-
-[[stacks]]
-id = "io.buildpacks.stacks.bionic"
-
-[metadata]
-
-[metadata.release]
-
-[metadata.release.docker]
-repository = "public.ecr.aws/heroku-buildpacks/heroku-nodejs-typescript-buildpack"
+id = "com.chainpayx.stack"
