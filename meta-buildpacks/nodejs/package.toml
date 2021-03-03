@@ -2,17 +2,16 @@
 uri = "."
 
 [[dependencies]]
-uri = "../../buildpacks/nodejs"
+uri = "docker://public.ecr.aws/heroku-buildpacks/heroku-nodejs-engine-buildpack@sha256:811fc2e1ee82b8bbf186e2a7f1ffd5d3e0191d14790f473cdb30403ecaa9a076"
 
 [[dependencies]]
-uri = "../../buildpacks/npm"
+uri = "docker://public.ecr.aws/heroku-buildpacks/heroku-nodejs-npm-buildpack@sha256:b55bc7270643271658fa65aac6b7ce87f73c3a7d94be1e136e9f62a736cc025f"
 
 [[dependencies]]
-uri = "../../buildpacks/typescript"
+uri = "docker://public.ecr.aws/heroku-buildpacks/heroku-nodejs-yarn-buildpack@sha256:18d6283e3d16614946f743ad7db0bfd987c2062c9e16d6eeb1ce9e2a26f6c876"
 
 [[dependencies]]
-uri = "../../buildpacks/yarn"
+uri = "docker://public.ecr.aws/heroku-buildpacks/heroku-nodejs-typescript-buildpack@sha256:4e4fa2f7b2c45ee135e0c4b0ffb5dcebf9b43ea24d490699f82f95fa64229cee"
 
 [[dependencies]]
-# Should be urn:cnb:registry:heroku/procfile@0.6.1 as soon as pack supports it. (0.16.1?)
 uri = "docker://docker.io/heroku/procfile-cnb@sha256:74881b33e1e33eea38b419e667b0a99ac50e536727eeefd1b2eeb7ff3a937ffd"

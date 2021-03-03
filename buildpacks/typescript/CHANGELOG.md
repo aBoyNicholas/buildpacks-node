@@ -4,6 +4,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] 2021/02/23
+- Add license to buildpack.toml ([#17](https://github.com/heroku/buildpacks-node/pull/17))
+
 ## [0.2.0]
 ### Added
 - Add heroku-20 support and stack-specific tests ([#13](https://github.com/heroku/nodejs-typescript-buildpack/pull/13))
